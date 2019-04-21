@@ -28,6 +28,20 @@
 |member|string|null: false|
 
 ### Association
-- has_many :members
+- has_many :users
 - has_many :messages
 
+
+## messageテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|body|text|null: false|
+|image|string||
+|group_id|integer|null: false, foreign_key: true|
+|user_id|integer|null: false, foreign_key: true|
+
+
+### Association
+- belongs_to :users
+- belongs_to :group
