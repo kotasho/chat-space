@@ -20,7 +20,7 @@
             %li.member-list__member メンバーリスト
           %a{:href => "/groups/edit"}
             .main-header__edit-btn Edit
-        
+
         .messages
           .message
             .upper-info
@@ -28,7 +28,7 @@
               %p.upper-info__date 名前 時間
             %p.message_text 
         
-        .form
+        .message-form
           %form#new_message.new-message{"accept-charset" => "UTF-8", :action => "/groups/554/messages", :enctype => "multipart/form-data", :method => "post"}
             %input{:name => "utf8", :type => "hidden", :value => "✓"}/
             %input{:name => "authenticity_token", :type => "hidden", :value => "fqlXvr5y1YLVTF4vSKca2neekKCF53IITiEL4qkIcdtJwFyPzRA1DkLDBwkv4i36yQoxHYlA/q4OFAlIuo5Uyg=="}/
