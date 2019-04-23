@@ -1,6 +1,53 @@
+
 !!!
-%html{lang: "ja"}
+%html
   %head
-    %meta{charset: "utf-8"}
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title ChatSpace
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
   %body
-    %p 
+    .flash-box  
+      
+    .wrapper
+      = render partial: "shared/side_bar"
+      .chat-main
+        .main-header
+          .current-group
+            %h2.current-group__name 現在のグループ
+            %ul.member-list member:
+            %li.member-list__member メンバーリスト
+          %a{:href => "/groups/edit"}
+            .main-header__edit-btn Edit
+        
+        .messages
+          .message
+            .upper-info
+              %p.upper-info__user
+              %p.upper-info__date 名前 時間
+            %p.message_text 
+        
+        .form
+          %form#new_message.new-message{"accept-charset" => "UTF-8", :action => "/groups/554/messages", :enctype => "multipart/form-data", :method => "post"}
+            %input{:name => "utf8", :type => "hidden", :value => "✓"}/
+            %input{:name => "authenticity_token", :type => "hidden", :value => "fqlXvr5y1YLVTF4vSKca2neekKCF53IITiEL4qkIcdtJwFyPzRA1DkLDBwkv4i36yQoxHYlA/q4OFAlIuo5Uyg=="}/
+            .input-box
+              %input#message_content.input-box__text{:name => "message[content]", :placeholder => "type a message", :type => "text"}/
+              %label.image-label{:for => "message_image"}
+                %i.fa.fa-image
+                %input#message_image.image-label__input{:name => "message[image]", :type => "file"}/
+            %input.new-message__submit-btn{"data-disable-with" => "Send", :name => "commit", :type => "submit", :value => "Send"}/
+                
+            -# input placeholder??
+            -# label.image-label??
+          -# input??
+    
+
+
+    -# = render partial: 'layouts/flash'
+    = yield
+
+
+
+    
