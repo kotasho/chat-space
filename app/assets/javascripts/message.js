@@ -1,5 +1,5 @@
 $(function(){
-  function buildHTML(message){
+  function build_messageHTML(message){
     var imagehtml = message.image == null ? "" : `<img src="${message.image}" class="lower-message__image">`
     var html = `<div class=message>
                  <div class="upper-message">
@@ -33,8 +33,8 @@ $('#item_form').on('submit', function(e){
     processData: false,
     contentType: false
   })
-  .done(function(data){
-    var html = buildHTML(data);
+  .done(function(message){
+    var html = build_messageHTML(message);
     $('.messages').append(html);
     $('.form__message').val('');
     $( ".form__submit").prop( "disabled", false );
