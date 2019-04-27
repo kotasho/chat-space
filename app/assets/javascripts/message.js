@@ -42,6 +42,6 @@ $('#item_form').on('submit', function(e){
   })
 .fail(function(){
   alert('error');
-})
-})
+    })
+  })
 });
