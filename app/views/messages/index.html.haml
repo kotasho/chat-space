@@ -14,10 +14,9 @@
             = @group.name
             %h2.current-group__name 
             %ul.member-list member:
-            %li.member-list__member
-          %a{:href => "/groups/edit"}
-            .main-header__edit-btn Edit
-
+            %li.member-list__member            
+          .edit_btn
+            = link_to 'Edit', edit_group_path(@group.id), class: "btn"
     
         .messages
           = render @messages
