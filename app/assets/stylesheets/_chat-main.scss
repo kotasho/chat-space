@@ -31,18 +31,31 @@
     text-align: -webkit-match-parent;
    }
   }
-   a {
-    text-decoration: none;
-   
-   .main-header__edit-btn {
-    height: 40px;
-    line-height: 40px;
-    padding: 0 20px;
-    margin-top: 30px;
-    border: solid 1px #38aef0;
-    color: #38aef0;
+  .edit_btn {
+    float: right;
+    a.btn {
+      display: block;
+      text-decoration: none;
+      height:40px;
+      line-height: 40px;
+      padding-right: 20px;
+      padding-left: 20px;
+      margin: 28px 0px;
+      margin-right: 40px;
+      text-align: center;
+      color: #38AEF0;
+      border: solid 1px #38aef0;
+      transition: 0.3s;
+    }
    }
   }
+
+  // %h2.current-group__name 
+  //           %ul.member-list member:
+  //           %li.member-list__member            
+  //         %a{:href => "/groups/edit"}
+  //           = link_to 'Edit', edit_group_path(@group.id), class: "btn"
+  
 
 
 .form {
@@ -79,7 +92,6 @@
     margin-left: 15px;
     padding: 0 30px;
   }
-}
 }
 }
 
