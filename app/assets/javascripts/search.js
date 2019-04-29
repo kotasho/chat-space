@@ -1,10 +1,5 @@
 $(function() {
-  
   var search_list = $(".user-search-result");
-
-
-  
-
   function appendUser(user) {
     var html = `<div class='chat-group-user clearfix' id='chat-group-user-${user.id}'>
                   <p class='chat-group-user__name'>${user.name}</p>
@@ -26,7 +21,6 @@ $(function() {
                 </div>`
     return html
   }
-
  
   $("#user-search-field").on("keyup", function(){  
     var input = $("#user-search-field").val();
@@ -45,9 +39,7 @@ $(function() {
           $(".user-search-result").append(html);
         });
       } 
-    })
-    
-   
+    })  
   });
 
   $(".user-search-result").on('click','.user-search-add', function() {
