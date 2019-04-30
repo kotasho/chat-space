@@ -1,7 +1,7 @@
 $(function(){
   function build_messageHTML(message){
     var imagehtml = message.image == null ? "" : `<img src="${message.image}" class="lower-message__image">`
-    var html = `<div class=message>
+    var html = `<div class="message" data-id="message.id">
                  <div class="upper-message">
                  <div class="upper-message__user-name">
                  ${message.user_name}
@@ -33,6 +33,7 @@ $('#item_form').on('submit', function(e){
     processData: false,
     contentType: false
   })
+
   .done(function(message){
     var html = build_messageHTML(message);
     $('.messages').append(html);
@@ -43,5 +44,45 @@ $('#item_form').on('submit', function(e){
 .fail(function(){
   alert('error');
     })
-  })
+  });
+
+
+
+  // 自動更新
+
+
+
+var reloadMessages = function() {}
+  last_message_id = $('.message:last').data('id');
+  $.ajax({  
+    url: location.href, 
+    type: 'get',
+    dataType: 'json', 
+    data: {id: last_message_id}
+  
+})
+
+  .done(function(message) {
+    var insertHTML = '';
+    data.messages.forEach(function(message) {
+      if (message.id > id ) {
+        insertHTML += buildHTML(message);
+      }
+    });
+    $('.chat-wrapper').prepend(insertHTML);
+  }) 
+      .fail(function() {
+        console.log('error');
+      });
+      setInterval(reloadMessages, 5000);
 });
+
+
+
+
+
+
+
+
+
+

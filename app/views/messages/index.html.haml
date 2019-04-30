@@ -14,7 +14,9 @@
             = @group.name
             %h2.current-group__name 
             %ul.member-list member:
-            %li.member-list__member            
+            %li.member-list__member    
+              - @members.each do |member|
+                = member.name
           .edit_btn
             = link_to 'Edit', edit_group_path(@group.id), class: "btn"
     
