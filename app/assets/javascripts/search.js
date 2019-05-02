@@ -7,7 +7,6 @@ $(function() {
                 </div>`
     search_list.append(html);
   };
-
   function appendNoUser(user) {
     var html = ``
     search_list.append(html);
@@ -15,13 +14,14 @@ $(function() {
 
   function buildHTML(id, name) {
     var html = `<div class="chat-group-user clearfix" id=chat-group-user-${id}>
-                  <input type="hidden" name="group[user_ids][]" value="${id}">
+               
+                 <input name='group[user_ids][]' type='hidden' value="${id}">
                   <p class="chat-group-user__name">${name}</p>
                   <a class="user-search-remove chat-group-user__btn chat-group-user__btn--remove" data-user-id="${id}">削除</a>
                 </div>`
     return html
   }
- 
+
   $("#user-search-field").on("keyup", function(){  
     var input = $("#user-search-field").val();
     
@@ -32,11 +32,12 @@ $(function() {
       dataType: 'json'
     })
     
-    .done(function(users) {  
-      if (users.length !== 0) {
+    .done(function(users) {
+      debugger  
+      $(".user-search-result").empty();
+      if (users.length !== 0 && input.length !== 0) {
         users.forEach(function(user){
-          var html = appendUser(user);
-          $(".user-search-result").append(html);
+          appendUser(user);      
         });
       } 
     })  
@@ -48,6 +49,7 @@ $(function() {
     var insertHTML = buildHTML(id, name);
     $('.chat-group-users').append(insertHTML);
     $(this).parent('.chat-group-user').remove();
+    buildHTML(id, name)
   });
 
   $(".chat-group-users").on('click', '.user-search-remove', function() {

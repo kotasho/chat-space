@@ -1,7 +1,8 @@
 $(function(){
   function build_messageHTML(message){
-    var imagehtml = message.image == null ? "" : `<img src="${message.image}" class="lower-message__image">`
-    var html = `<div class=message>
+   
+    image = ( message.image ) ? `<img class= "lower-message__image" src=${message.image} >` : "";
+    var html = `<div class="message" data-message-id="${message.id}">
                  <div class="upper-message">
                  <div class="upper-message__user-name">
                  ${message.user_name}
@@ -33,6 +34,7 @@ $('#item_form').on('submit', function(e){
     processData: false,
     contentType: false
   })
+
   .done(function(message){
     var html = build_messageHTML(message);
     $('.messages').append(html);
@@ -41,7 +43,38 @@ $('#item_form').on('submit', function(e){
     $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');  
   })
 .fail(function(){
-  alert('error');
+  alert('無効');
     })
-  })
+  });
+
+var reloadMessages = function() {
+ 
+  if (location.pathname.match(/\/groups\/\d+\/messages/)) {
+　var last_message_id = $('.message').filter(":last").data('message-id')
+  
+  $.ajax({  
+    url: 'api/messages',
+    type: 'get',
+    dataType: 'json', 
+    data: {last_id: last_message_id}
+})
+
+  .done(function(messages) {   
+    var insertHTML = '';
+ 
+  if (messages.length !== 0){
+    messages.forEach(function(message){
+      if (message.id > last_message_id){
+      var html = build_messageHTML(message);
+      $('.messages').append(html)   
+      }
+    })   
+   } 
+  }) 
+   .fail(function() {
+        alert('error');
+      });    
+    }
+}
+    setInterval(reloadMessages, 5000);  
 });
