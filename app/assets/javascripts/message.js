@@ -47,7 +47,6 @@ $('#item_form').on('submit', function(e){
     })
   });
 
-  
 var reloadMessages = function() {
  
   if (location.pathname.match(/\/groups\/\d+\/messages/)) {
