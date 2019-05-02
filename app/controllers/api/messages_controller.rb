@@ -4,11 +4,11 @@ class Api::MessagesController < ApplicationController
    def index
      @messages = Message.all
      respond_to do |format|     
-        format.json { @new_messages = @group.messages.where('id > ?', params[:last_id]) }  
+       format.json { @new_messages = @group.messages.where('id > ?', params[:last_id]) }  
      end
    end
       
    def set_group
-      @group = Group.find(params[:group_id])
+     @group = Group.find(params[:group_id])
    end
 end
