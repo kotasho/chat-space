@@ -39,7 +39,8 @@ $(function() {
       dataType: 'json'
     })
     
-    .done(function(users) {  
+    .done(function(users) {
+      debugger  
       $(".user-search-result").empty();
       if (users.length !== 0 && input.length !== 0) {
         users.forEach(function(user){
