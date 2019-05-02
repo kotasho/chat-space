@@ -7,14 +7,10 @@ $(function() {
                 </div>`
     search_list.append(html);
   };
-
-
-
   function appendNoUser(user) {
     var html = ``
     search_list.append(html);
   };
-
 
   function buildHTML(id, name) {
     var html = `<div class="chat-group-user clearfix" id=chat-group-user-${id}>
@@ -26,9 +22,6 @@ $(function() {
     return html
   }
 
-
-  
- 
   $("#user-search-field").on("keyup", function(){  
     var input = $("#user-search-field").val();
     

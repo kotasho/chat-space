@@ -15,7 +15,7 @@ $(function(){
                  <p class="lower-message__content">
                  ${message.content}
                  </p>  
-                 
+                 ${imagehtml}
               </div>
             </div> `
       return html;
@@ -47,18 +47,12 @@ $('#item_form').on('submit', function(e){
     })
   });
 
-
-
-  // 自動更新
-  
- 
   
 var reloadMessages = function() {
  
   if (location.pathname.match(/\/groups\/\d+\/messages/)) {
-var last_message_id = $('.message').filter(":last").data('message-id')
+　var last_message_id = $('.message').filter(":last").data('message-id')
   
-
   $.ajax({  
     url: 'api/messages',
     type: 'get',
@@ -66,30 +60,22 @@ var last_message_id = $('.message').filter(":last").data('message-id')
     data: {last_id: last_message_id}
 })
 
-  .done(function(messages) {
-    
+  .done(function(messages) {   
     var insertHTML = '';
  
-  
   if (messages.length !== 0){
     messages.forEach(function(message){
       if (message.id > last_message_id){
       var html = build_messageHTML(message);
-      $('.messages').append(html)
-     
+      $('.messages').append(html)   
       }
     })   
-   }
-   
-  })
-
-  
+   } 
+  }) 
    .fail(function() {
         alert('error');
-      });
-      
+      });    
     }
 }
-    setInterval(reloadMessages, 5000);
-  
+    setInterval(reloadMessages, 5000);  
 });
