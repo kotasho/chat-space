@@ -1,4 +1,3 @@
-$(document).on('turbolinks:load', function() { 
 $(function(){
   function build_messageHTML(message){
    
@@ -79,4 +78,4 @@ var reloadMessages = function() {
 }
     setInterval(reloadMessages, 5000);  
   });
-});
+
